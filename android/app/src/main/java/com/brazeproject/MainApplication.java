@@ -3,6 +3,7 @@ package com.brazeproject;
 import android.app.Application;
 import android.util.Log;
 
+import com.braze.Braze;
 import com.braze.BrazeActivityLifecycleCallbackListener;
 import com.braze.support.BrazeLogger;
 import com.facebook.react.PackageList;
@@ -59,6 +60,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     registerActivityLifecycleCallbacks(new BrazeActivityLifecycleCallbackListener());
     BrazeLogger.setLogLevel(Log.VERBOSE);
+    Braze.getInstance(this).setImageLoader(new GlideBrazeImageLoader());
     SoLoader.init(this, /* native exopackage */ false);
 
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
